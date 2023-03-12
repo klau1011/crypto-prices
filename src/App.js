@@ -67,6 +67,7 @@ function App() {
     <>
      <div className="App">
       <div className="header">
+      <h1>Crypto Price Tracker</h1>
         {/* search bar */}
       <input className="searchBar" type="text" placeholder="Search for a crypto..." onChange={(event) => {
         setSearch(event.target.value)
@@ -94,6 +95,9 @@ function App() {
 
 
     </div>
+    <footer>
+      Developed by Kevin Lau 
+    </footer>
     
 
     </>

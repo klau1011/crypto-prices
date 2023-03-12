@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Akshar&family=Space+Grotesk:wght@500&display=swap');
 
-
 *{
   font-family: 'Akshar', sans-serif;
 font-family: 'Space Grotesk', sans-serif;
@@ -15,6 +14,7 @@ background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
   overflow-x: hidden;
   background-size: cover;
   background-attachment: fixed;
+  min-height: 734px;
 }
 
 
@@ -28,6 +28,13 @@ background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
   align-items: center;
   background-color: #2d3436;
   background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+  color: white;
+}
+
+.header > h1{
+  position: absolute;
+  left: 20px;
+  color: #FFFFF0;
 }
 
 .header > input {
@@ -40,16 +47,16 @@ background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 
 .display {
   display: grid;
-  width: 70%;
+  width: 85%;
   margin: auto;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
-  align-items: center;
+  align-items:flex-start;
   gap: 50px;
   background-color: #FAFAEB; 
   padding: 50px;
   border-radius: 30px;
-  text-align: center;
+  text-align: center; 
  
 }
 .coin {
@@ -117,3 +124,11 @@ select option {
   cursor: pointer;
 }
 
+footer {
+  background-color: #232323;
+  height: 50px;
+  color: #E0FFE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
