@@ -1,3 +1,3 @@
 Crypto Web App that displays the live prices of cryptocurrencies in a card format
 
-https://crypto-prices-kappa.vercel.app/
+https://crypto-price-tracker-tool.vercel.app/
