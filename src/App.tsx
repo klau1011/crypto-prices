@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import "./App.css";
-import Coin from "./components/Coin";
+import Coin from "./components/Coin.tsx";
 
 function App() {
   useEffect(() => {
@@ -9,35 +9,35 @@ function App() {
   }, []);
 
   //coin data
-  const [listOfCoins, setListOfCoins] = useState([]);
+  const [listOfCoins, setListOfCoins] = useState<Object []>([]);
   //search state
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
   //dropdown selected state
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState<string>("");
 
   //initalize
   let preFilter = listOfCoins;
 
   //sort depending on what the selected value is (dropdown)
   if (selected === "PriceLH") {
-    preFilter = listOfCoins.sort((a, b) => {
+    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
       return a.price - b.price;
     });
   } else if (selected === "PriceHL") {
-    preFilter = listOfCoins.sort((a, b) => {
+    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
       return b.price - a.price;
     });
   } else if (selected === "Alphabetical") {
-    preFilter = listOfCoins.sort((a, b) => {
+    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
       return a.name < b.name ? -1 : 1;
     });
   } else if (selected === "Popularity") {
-    preFilter = listOfCoins.sort((a, b) => {
+    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
       return a.rank - b.rank;
     });
   }
 
-  const filtered = preFilter.filter((coin) => {
+  const filtered = preFilter.filter((coin: Coin) => {
     //filter if search lowercase with spaces removed is contained in space removed coin name
     return coin.name
       .toLowerCase()

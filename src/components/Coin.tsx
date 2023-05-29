@@ -1,6 +1,13 @@
 import React from "react";
 
-function Coin({ name, icon, price, symbol }) {
+interface CoinProps {
+  name: string;
+  icon: string;
+  price: number;
+  symbol: string;
+}
+
+function Coin({ name, icon, price, symbol }: CoinProps) {
   return (
     <div className="coin">
       <h1>{name}</h1>
