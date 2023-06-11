@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, {useState, useEffect } from "react";
 import "./App.css";
-import Coin from "./components/Coin.tsx";
+import Coin from "./components/Coin";
 
 function App() {
   useEffect(() => {
@@ -51,8 +51,6 @@ function App() {
       (response) => setListOfCoins(response.data.coins)
     );
   }, []);
-
-  console.log(listOfCoins);
 
   return (
     <>
