@@ -2,6 +2,7 @@ import Axios from "axios";
 import React, {useState, useEffect } from "react";
 import "./App.css";
 import Coin from "./components/Coin";
+import {ICoinProps} from './Interfaces/Interfaces'
 
 function App() {
   useEffect(() => {
@@ -20,26 +21,26 @@ function App() {
 
   //sort depending on what the selected value is (dropdown)
   if (selected === "PriceLH") {
-    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
-      return a.price - b.price;
+    preFilter = listOfCoins.sort((a, b) => {
+      return (a as ICoinProps).price - (b as ICoinProps).price;
     });
   } else if (selected === "PriceHL") {
-    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
-      return b.price - a.price;
+    preFilter = listOfCoins.sort((a, b) => {
+      return (b as ICoinProps).price - (a as ICoinProps).price;
     });
   } else if (selected === "Alphabetical") {
-    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
-      return a.name < b.name ? -1 : 1;
+    preFilter = listOfCoins.sort((a, b) => {
+      return (a as ICoinProps).name < (b as ICoinProps).name ? -1 : 1;
     });
   } else if (selected === "Popularity") {
-    preFilter = listOfCoins.sort((a: Coin, b: Coin) => {
+    preFilter = listOfCoins.sort((a: any, b:any) => {
       return a.rank - b.rank;
     });
   }
 
-  const filtered = preFilter.filter((coin: Coin) => {
+  const filtered = preFilter.filter((coin) => {
     //filter if search lowercase with spaces removed is contained in space removed coin name
-    return coin.name
+    return (coin as ICoinProps).name
       .toLowerCase()
       .replace(/ /g, "")
       .includes(search.toLowerCase().replace(/ /g, ""));
@@ -86,13 +87,13 @@ function App() {
         {/* grid -> output msg if theres no stuff in the array*/}
         <div className="display">
           {filtered.length > 0
-            ? filtered.map((coin: Coin) => {
+            ? filtered.map((coin) => {
                 return (
                   <Coin
-                    name={coin.name}
-                    icon={coin.icon}
-                    price={coin.price}
-                    symbol={coin.symbol}
+                    name={(coin as ICoinProps).name}
+                    icon={(coin as ICoinProps).icon}
+                    price={(coin as ICoinProps).price}
+                    symbol={(coin as ICoinProps).symbol}
                   />
                 );
               })
