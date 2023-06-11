@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import "./App.css";
 import Coin from "./components/Coin.tsx";
 
@@ -88,7 +88,7 @@ function App() {
         {/* grid -> output msg if theres no stuff in the array*/}
         <div className="display">
           {filtered.length > 0
-            ? filtered.map((coin) => {
+            ? filtered.map((coin: Coin) => {
                 return (
                   <Coin
                     name={coin.name}
