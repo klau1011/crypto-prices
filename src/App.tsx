@@ -1,7 +1,8 @@
 import Axios from "axios";
-import { useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import "./App.css";
 import Coin from "./components/Coin";
+import {ICoinProps} from './Interfaces/Interfaces'
 
 function App() {
   useEffect(() => {
@@ -9,11 +10,11 @@ function App() {
   }, []);
 
   //coin data
-  const [listOfCoins, setListOfCoins] = useState([]);
+  const [listOfCoins, setListOfCoins] = useState<Object []>([]);
   //search state
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
   //dropdown selected state
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState<string>("");
 
   //initalize
   let preFilter = listOfCoins;
@@ -21,25 +22,25 @@ function App() {
   //sort depending on what the selected value is (dropdown)
   if (selected === "PriceLH") {
     preFilter = listOfCoins.sort((a, b) => {
-      return a.price - b.price;
+      return (a as ICoinProps).price - (b as ICoinProps).price;
     });
   } else if (selected === "PriceHL") {
     preFilter = listOfCoins.sort((a, b) => {
-      return b.price - a.price;
+      return (b as ICoinProps).price - (a as ICoinProps).price;
     });
   } else if (selected === "Alphabetical") {
     preFilter = listOfCoins.sort((a, b) => {
-      return a.name < b.name ? -1 : 1;
+      return (a as ICoinProps).name < (b as ICoinProps).name ? -1 : 1;
     });
   } else if (selected === "Popularity") {
-    preFilter = listOfCoins.sort((a, b) => {
+    preFilter = listOfCoins.sort((a: any, b:any) => {
       return a.rank - b.rank;
     });
   }
 
   const filtered = preFilter.filter((coin) => {
     //filter if search lowercase with spaces removed is contained in space removed coin name
-    return coin.name
+    return (coin as ICoinProps).name
       .toLowerCase()
       .replace(/ /g, "")
       .includes(search.toLowerCase().replace(/ /g, ""));
@@ -51,8 +52,6 @@ function App() {
       (response) => setListOfCoins(response.data.coins)
     );
   }, []);
-
-  console.log(listOfCoins);
 
   return (
     <>
@@ -91,10 +90,10 @@ function App() {
             ? filtered.map((coin) => {
                 return (
                   <Coin
-                    name={coin.name}
-                    icon={coin.icon}
-                    price={coin.price}
-                    symbol={coin.symbol}
+                    name={(coin as ICoinProps).name}
+                    icon={(coin as ICoinProps).icon}
+                    price={(coin as ICoinProps).price}
+                    symbol={(coin as ICoinProps).symbol}
                   />
                 );
               })
