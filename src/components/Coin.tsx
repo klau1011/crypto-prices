@@ -1,7 +1,7 @@
-import React from "react";
+import React, {FC} from "react";
 import {ICoinProps} from '../Interfaces/Interfaces'
 
-function Coin({ name, icon, price, symbol }: ICoinProps) {
+const Coin: FC<ICoinProps> = ({ name, icon, price, symbol }) => {
   return (
     <div className="coin">
       <h1>{name}</h1>

@@ -6,53 +6,52 @@ font-family: 'Space Grotesk', sans-serif;
 margin: 0px;
 }
 .App {
-  background-color: #2a2a72;
-background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+  background: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
   background-repeat: no-repeat;
-  overflow-x: hidden;
   background-size: cover;
   background-attachment: fixed;
   min-height: 734px;
+  overflow-x: hidden;
 }
+
 .header {
-  position: relative;   
-  margin-top: 0px;
+  position: relative;
   height: 150px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2d3436;
-  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+  background: linear-gradient(315deg, #2d3436 0%, #000000 74%);
   color: white;
 }
-.header > h1{
+
+.header > h1 {
   position: absolute;
   left: 20px;
-  color: #FFFFF0;
+  color: #fffff0;
 }
+
 .header > input {
- background-color: white;
- height: 50px;
- border-radius: 20px;
- width: 22%;
- text-align: center;
+  background-color: white;
+  height: 50px;
+  border-radius: 20px;
+  width: 22%;
+  text-align: center;
 }
 
 .display {
   display: grid;
   width: 85%;
   margin: auto;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
-  align-items:flex-start;
+  align-items: flex-start;
   gap: 50px;
-  background-color: #FAFAEB; 
+  background-color: #fafaeb;
   padding: 50px;
   border-radius: 30px;
-  text-align: center; 
- 
+  text-align: center;
 }
+
 .coin {
   text-align: center;
   padding: 20px;
@@ -66,36 +65,40 @@ background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
   justify-content: space-around;
   border-radius: 10px;
 }
+
 .display .coin:last-child {
   justify-self: center;
   width: 350px;
   grid-column-start: span 1;
- }
+}
 
 .coin > h1 {
   color: peachpuff;
 }
+
 .coin > img {
   max-width: 20%;
 }
 
- #price {
-  color: #1be25d
+#price {
+  color: #1be25d;
 }
+
 #symbol {
   color: rgb(180, 187, 196);
 }
-.searchBar{
+
+.searchBar {
   margin: 100px;
 }
 
 #header-container {
   display: absolute;
-  display:block;
   margin-top: 25px;
   margin-bottom: 25px;
   margin-left: 1350px;
 }
+
 select {
   margin: auto;
   width: 150px;
@@ -103,6 +106,7 @@ select {
   border-radius: 30px;
   cursor: pointer;
 }
+
 select option {
   color: black;
   width: 150px;
@@ -111,10 +115,11 @@ select option {
   text-align: center;
   cursor: pointer;
 }
+
 footer {
   background-color: #232323;
   height: 50px;
-  color: #E0FFE0;
+  color: #e0ffe0;
   display: flex;
   justify-content: center;
   align-items: center;
