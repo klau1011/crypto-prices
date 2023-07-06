@@ -1,23 +1,34 @@
 import Axios from "axios";
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect, useMemo } from "react";
 import "./App.css";
 import Coin from "./components/Coin";
 import {ICoinProps} from './Interfaces/Interfaces'
 
-function App() {
+function App(){
   useEffect(() => {
     document.title = "Crypto Prices";
   }, []);
 
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      const response = await Axios.get("https://api.coinstats.app/public/v1/coins?skip=0");
+      setListOfCoins(response.data.coins);
+    };
+
+    fetchData();
+  }, []);
+  
   //coin data
-  const [listOfCoins, setListOfCoins] = useState<Object []>([]);
+  const [listOfCoins, setListOfCoins] = useState<ICoinProps []>([]);
   //search state
   const [search, setSearch] = useState<string>("");
   //dropdown selected state
   const [selected, setSelected] = useState<string>("");
 
   //initalize
-  let preFilter = listOfCoins;
+  let preFilter: ICoinProps [] = useMemo(() => {
+    return listOfCoins;
+  }, [listOfCoins]);
 
   //sort depending on what the selected value is (dropdown)
   if (selected === "PriceLH") {
@@ -38,20 +49,13 @@ function App() {
     });
   }
 
-  const filtered = preFilter.filter((coin) => {
+  const filtered = useMemo(() => preFilter.filter((coin) => {
     //filter if search lowercase with spaces removed is contained in space removed coin name
     return (coin as ICoinProps).name
       .toLowerCase()
       .replace(/ /g, "")
       .includes(search.toLowerCase().replace(/ /g, ""));
-  });
-
-  //useEffects run immedatiely when the page rerenders
-  useEffect(() => {
-    Axios.get("https://api.coinstats.app/public/v1/coins?skip=0").then(
-      (response) => setListOfCoins(response.data.coins)
-    );
-  }, []);
+  }), [search, selected, preFilter]);
 
   return (
     <>
@@ -63,16 +67,16 @@ function App() {
             className="searchBar"
             type="text"
             placeholder="Search for a crypto..."
-            onChange={(event) => {
-              setSearch(event.target.value);
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setSearch(e.target.value);
             }}
           ></input>
         </div>
         {/* dropdown select */}
         <section id="header-container">
           <select
-            onChange={(event) => {
-              setSelected(event.target.value);
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              setSelected(e.target.value);
             }}
           >
             <option value="Select" disabled>
@@ -107,4 +111,3 @@ function App() {
 
 export default App;
 
-//AXIOS
